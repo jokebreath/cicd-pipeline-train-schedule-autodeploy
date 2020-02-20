@@ -54,6 +54,7 @@ pipeline {
                 )
             }
         }
+/*
         stage('SmokeTest') {
             when {
                 branch 'master'
@@ -71,11 +72,13 @@ pipeline {
                 }
             }
         }
+*/
         stage('DeployToProduction') {
             when {
                 branch 'master'
             }
             steps {
+                input 'Deploy to Production?'
                 milestone(1)
                 kubernetesDeploy(
                     kubeconfigId: 'kubeconfig',
